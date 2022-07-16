@@ -1,7 +1,5 @@
 <!--리액트를 사용하여 앱을 작성하였을 때-->
-<!--참고 : 리액트의 작동 원리를 알기 위해서 
-    어려운 방식으로 코드를 작성하였음. 
-    실제로는 이런식으로 개발 하지 않음.-->
+<!--실제 개발에서 사용하는 리액트 코드-->
 
 <!DOCTYPE html>
 <html>
@@ -10,21 +8,32 @@
     </body>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script>
+    <!-- 바벨 사용 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
         // 3. span을 배치할 위치인 root를 html로부터 가져옴.
         const root = document.getElementById("root");
         // 1. span 생성
-        // 4. 추가 내용 작성(html_태그, {property}, content )
-        const span = React.createElement("span", {
-                onMouseEnter: () => console.log('mouse entered')
-            },"Hello I'm span"
+        // 4. 추가 내용 작성( <html_태그 propery>content</html_태그> )
+        const span = (
+            <span id="title" onMouseEnter={() => console.log("mouse entered")}>
+                Hello, I'm span
+            </span>
         );
+
         // 5. 버튼 생성
         // 7. property에 eventListner 등록 가능
         //      functionName: (arg) => function
-        const btn = React.createElement("button", {
-            onClick: () => console.log("Clicked!!!")
-        }, "Click me");
+        const btn = (
+            <button 
+                style={{
+                    backgroundClor: "tomato", 
+                }}
+                onClick= {() => console.log("Clicked!!!")}
+            >
+                Click me
+            </button>
+        );
         // 6. span과 btn을 동시에 render하기 위해서 div 생성
         const container = React.createElement("div", null, [span, btn]);
         // 2. 생성한 span을 html로 만들어 화면에 배치
