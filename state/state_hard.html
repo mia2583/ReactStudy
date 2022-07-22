@@ -1,0 +1,46 @@
+<!--jsx를 사용하여 더욱 쉽게 변수 사용-->
+<!--참고 : 리액트의 작동 원리를 알기 위해서 
+    어려운 방식으로 코드를 작성하였음. 
+    실제로는 이런식으로 개발 하지 않음.-->
+<!--이 방법은 매번 render를 새로 해줘야하는, 기억해야하는
+    번거로움이 있음-->
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- 바벨 사용 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        
+        const root = document.getElementById("root");
+        // 1. 변수 생성
+        let counter = 0;
+        // 3. 함수 생성
+        function countUp() {
+            counter = counter + 1;
+            // 5. ui 업데이트 (새로고침)
+            render();
+        }
+
+        function render() {
+            ReactDOM.render(<Container />, root); 
+        }
+
+
+        // 2. 변수 사용하기 {변수명}
+        // 4. 함수 사용하기 {함수명}
+        const Container = () => (
+            <div>
+                <h3>Total clicks: {counter}</h3>
+                <button onClick={countUp}>Click me</button>
+            </div>
+            );
+
+        // 참고) 한번만 실행하므로 ui 변경사항이 업데이트 되지 않음
+        ReactDOM.render(<Container />, root); 
+    </script>
+</html>

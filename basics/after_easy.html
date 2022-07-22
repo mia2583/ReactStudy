@@ -15,7 +15,7 @@
         const root = document.getElementById("root");
         // 1. span 생성
         // 4. 추가 내용 작성( <html_태그 propery>content</html_태그> )
-        const span = (
+        const Span = () => (
             <span id="title" onMouseEnter={() => console.log("mouse entered")}>
                 Hello, I'm span
             </span>
@@ -24,7 +24,7 @@
         // 5. 버튼 생성
         // 7. property에 eventListner 등록 가능
         //      functionName: (arg) => function
-        const btn = (
+        const Btn = () => (
             <button 
                 style={{
                     backgroundClor: "tomato", 
@@ -35,8 +35,10 @@
             </button>
         );
         // 6. span과 btn을 동시에 render하기 위해서 div 생성
-        const container = React.createElement("div", null, [span, btn]);
+        // span과 btn을 텍스트로 인식하지 않도록 함수로 만들기
+        // 컴포넌트의 첫글자는 무조건 대문자로~!
+        const Container = () => (<div><Span /> <Btn /></div>);
         // 2. 생성한 span을 html로 만들어 화면에 배치
-        ReactDOM.render(container, root); // (element, 위치)
+        ReactDOM.render(<Container />, root); // (element, 위치)
     </script>
 </html>
