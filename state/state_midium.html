@@ -1,5 +1,5 @@
 <!--jsx를 사용하여 더욱 쉽게 변수 사용-->
-<!--실제 개발에서 사용하는 코딩- 방식-->
+<!--re-render을 쉽게 하는 방법-->
 
 <!DOCTYPE html>
 <html>
@@ -19,6 +19,7 @@
         function countUp() {
             counter = counter + 1;
             // 5. ui 업데이트 (새로고침)
+            // 수정 값이 있을 때마다 리렌더링을 해야하는 불편함이 있음
             render();
         }
 
@@ -34,9 +35,9 @@
                 <h3>Total clicks: {counter}</h3>
                 <button onClick={countUp}>Click me</button>
             </div>
-            );
+        );
 
         // 참고) 한번만 실행하므로 ui 변경사항이 업데이트 되지 않음
-        ReactDOM.render(<Container />, root); 
+        ReactDOM.render(<Container />, root);  // 혹은 render();
     </script>
 </html>

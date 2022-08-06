@@ -1,0 +1,46 @@
+<!--jsx를 사용하여 더욱 쉽게 변수 사용-->
+<!--re-render을 쉽게 하는 방법-->
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- 바벨 사용 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        
+        const root = document.getElementById("root");
+        
+        function App() {
+            // 1. 변수 생성
+            // useState -> 데이터와 해당 데이터에 변화를 줄 때 사용하는 함수를 담는다.
+            // React.useState(초기값, );
+            const data = React.useState(0);
+            // 2. 이름 붙여주기
+            // const counter = data[0];
+            // const modifier = data[1]; 와 같은 의미
+            const [counter, modifier] = data;
+            // const [counter, modifier] = React.useState(0);로 한번에 사용 가능
+            const onClick = () => {
+                // 3. 값 업데이트
+                // modifier(업데이트_값)
+                modifier(counter + 1);
+            };
+
+            return (
+                <div>
+                    <h3>Total clicks: {counter}</h3>
+                    <button onClick={onClick}
+                    >Click me</button>
+                </div>
+            );
+
+        }
+
+        // 참고) 한번만 실행하므로 ui 변경사항이 업데이트 되지 않음
+        ReactDOM.render(<App />, root);
+    </script>
+</html>
