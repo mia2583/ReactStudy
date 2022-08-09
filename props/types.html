@@ -1,0 +1,52 @@
+<!-- props란?
+    부모 컴포넌트로부터 자식 컴포넌트에 데이터를
+    보낼 수 있게 해주는 방법 -->
+
+    <!DOCTYPE html>
+    <html>
+        <body>
+            <div id="root"></div>
+        </body>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+        <!-- 바벨 사용 -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <!-- propType는 어떤 타입의 prop를 받고 있는지를 체크 -->
+        <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+        <script type="text/babel">
+        
+            // props 대신에 {text, fontSize = 16}으로 적으면
+            // 만약 fontSize가 입력되지 않으면 16을 default로 지정.
+            function Btn(props) {
+                return <button
+                    style={{
+                        backgroundColor : "tomato",
+                        color : "white",
+                        padding: "10px 20px",
+                        border:0,
+                        borderRadius:10,
+                        fontSize: props.fontSize,
+                    }}>{props.text}</button>
+            }
+            // propType을 확인하도록 함.
+            // 잘못 입력하면 warning으로 알려줌.
+            // 반드시 입력을 받아야하면 뒤에 .isRequired를 추가해주면 된다.
+            Btn.propTypes = {
+                // prop 이름과 type을 명시
+                text: PropTypes.string,
+                fontSize: PropTypes.number,
+            }
+            function App() {
+
+                return (
+                    <div>
+                        <Btn text={value} fontSize={18} />
+                        <Btn text="Continue" />
+                    </div>
+                );
+            }
+        
+            const root = document.getElementById("root");
+            ReactDOM.render(<App />, root);
+        </script>
+    </html>

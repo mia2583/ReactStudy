@@ -1,0 +1,53 @@
+<!-- props란?
+    부모 컴포넌트로부터 자식 컴포넌트에 데이터를
+    보낼 수 있게 해주는 방법 -->
+
+    <!DOCTYPE html>
+    <html>
+        <body>
+            <div id="root"></div>
+        </body>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+        <!-- 바벨 사용 -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/babel">
+        
+            function Btn(props) {
+                console.log(props.text, "was rendered");
+                return <button 
+                    onClick = {props.onClick}
+                    style={{
+                        backgroundColor : "tomato",
+                        color : "white",
+                        padding: "10px 20px",
+                        border:0,
+                        borderRadius:10,
+                    }}>{props.text}</button>
+            }
+    
+            function App() {
+                // 같은 버튼에 다른 onClick 기능 추가하기.
+                // 이때의 onClick은 이벤트 리스너가 아나라 prop임.
+                // 만약 onClick을 위의 Btn 즉, html에 추가한다면
+                // 그거는 이벤트 리스너가 맞음.
+                const [value, setValue] = React.useState("Save Changes");
+                const changeValue = () => setValue("Revert Changes");
+
+                // 리액트 메모
+                // props가 변경되지 않으면 
+                // 컴포넌트가 불필요하게 다시 랜더링 되는 것을 막기 위함.
+                // 속도가 느려지는 것을 방지하기 위함.
+                const MemorizedBtn = React.memo(Btn)
+                return (
+                    <div>
+                        <Btn text={value} onClick={changeValue} />
+                        <Btn text="Continue" />
+                    </div>
+                );
+            }
+        
+            const root = document.getElementById("root");
+            ReactDOM.render(<App />, root);
+        </script>
+    </html>
