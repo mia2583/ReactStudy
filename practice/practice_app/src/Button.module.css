@@ -1,0 +1,7 @@
+/* css파일은 Button.js에  import 명시 필요함. */
+
+.btn {
+    color: white;
+    background-color: tomato;
+
+}

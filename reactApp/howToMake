@@ -1,0 +1,20 @@
+create-react-app은 리액트 어플리케이션을 만드는 방법
+
+앱에 필요한 많은 스크립트들과 많은 사전 설정을 대신 해준다.
+
+1. nodejs 설치
+-> nodejs.org에서 다운로드
+2. nodejs 설치 확인
+-> 콘솔에 node -v, 콘솔에서 npx도 확인
+3. npx create-react-app 폴더_이름
+-> 설치가 완료되면 해당 폴더에서 package.json파일 확인
+(실행할 수 있는 모든 스크립트들이 나열되어 있음)
+4. npm run start 혹은 npm start
+-> 개발용 서버를 만들어줌
+5. index.js와 App.js외에 src 폴더 내의 파일들 삭제
+-> 필요한 기능만 사용
+
+- src 폴더 : 모든 파일들 포함하는 폴더
+    - index.js : 해당 앱을 index.html에 자동으로 넣어주어 실행되도록 함
+
+ 
